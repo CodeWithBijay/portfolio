@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Animate Hexagon</title>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="container" class="container">
+  <svg id="hexagon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g>
+      <g id="B" transform="translate(36, 33)" fill="#64FFDA" style="opacity: 0" font-family="Calibre-Medium, Calibre" font-size="50" font-weight="400" letter-spacing="4.16666603">
+        <text>
+          <tspan x="0.141666985" y="33">B</tspan>
+        </text>
+      </g>
+    <path 
+      stroke="#64FFDA" 
+      stroke-width="5" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      d="M 50, 5
+         L 11, 27
+         L 11, 72
+         L 50, 95
+         L 89, 73
+         L 89, 28 z"
+          />
+      </g>
+  </svg>
+</div>
+<style>
+  html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #0a192f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: max-content;
+  max-width: 100px;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  fill: none;
+}
+</style>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js'></script><script>
+  const anim = anime.timeline({
+    loop: true,
+    direction: 'alternate',
+  });
+  
+  anim
+    .add({
+      targets: '#hexagon path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutQuart',
+      duration: 2000,
+      delay: function(el, i) { return i * 250 },
+    })
+    .add({
+      targets: '#hexagon #B',
+      duration: 1000,
+      opacity: 1,
+      easing: 'easeInOutQuart'
+    });
+    (function() {
+    var preload = document.getElementById("container");
+    var loading = 0;
+    var id = setInterval(frame, 58);
+
+function frame() {
+    if(loading == 100) {
+        clearInterval(id);
+        window.open("index.html","_self");
+    }
+    else{
+        loading = loading + 1;
+        if(loading == 90) {
+            container.style.animation = "Fadeout 1s ease";
+        }
+    }
+}
+})();
+    </script>
+
+</body>
+</html>
